@@ -137,7 +137,7 @@ int main() {
         cout << "Пароль неверный! Попробуйте еще раз: ";
         cin >> password;
         if (password != passwd) {
-            cout << "Вы вводите неверный пароль! Последня попытка: ";
+            cout << "Вы вводите неверный пароль! Последняя попытка: ";
             cin >> password;
             if (password != passwd) {
                 cout << "Вы использовали все попытки! Завершение программы...";
@@ -164,7 +164,7 @@ int main() {
                 break;
             } catch (invalid_argument& ex) { // ловим ошибку, выводим её пользователю и запрашиваем ввод заново
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.ignore();
                 cout << "Ошибка: " << ex.what() << endl;
             }
         }
