@@ -22,7 +22,7 @@ const char table[str][stlb] = {
                         {'4', '5', '6', '7', '8', '9'}
 };
 
-string polybiumEncryption(string message) { // шифровка
+string polybiumEncryption(string& message) { // шифровка
     string Encrypted;
     
     for (int element = 0; element < message.length(); ++element) {
@@ -41,7 +41,7 @@ string polybiumEncryption(string message) { // шифровка
     return Encrypted;
 }
 
-string polybiumDescryption(string message) { // расшифровка
+string polybiumDescryption(string& message) { // расшифровка
     string Descrypted;
     
     int stroka, stolbec;
@@ -63,7 +63,7 @@ string polybiumDescryption(string message) { // расшифровка
     return Descrypted;
 }
 
-vector<char> checkinputpolibi(string message) { // проверка ввода
+vector<char> checkinputpolibi(string& message) { // проверка ввода
     vector<bool> check(message.length());
     for (int simvolmessage = 0; simvolmessage < message.length(); ++simvolmessage) {
         for (int stroka = 0; stroka < str; ++stroka) {

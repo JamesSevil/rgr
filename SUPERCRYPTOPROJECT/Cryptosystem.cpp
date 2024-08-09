@@ -1,7 +1,7 @@
-#include "Cryptosystem.h"
 #include "kvpolibi.cpp"
 #include "vijener.cpp"
 #include "hughes.cpp"
+#include "Cryptosystem.h"
 
 string FileInput(string filename) { // ф-ия вывода из файла
     string str;
@@ -62,7 +62,7 @@ void input_and_check(string& message, string choice_shifr, string message_or_key
 }
 
 void Enc_and_Desc(string choice_shifr) {
-    string message, wordkey;
+    string message, wordkey, filename;
     int key;
     
     if (choice_shifr == "Polibi") {
@@ -74,8 +74,13 @@ void Enc_and_Desc(string choice_shifr) {
         input_and_check(message, "Hughes", "message");
         key = GenerateKey();
     }
+    cout << "Введите название файла, в который будет записано сообщение: ";
+    cin >> filename;
+    FileOutput(filename, message);
+    
 
     // ШИФРОВКА //
+    message = FileInput(filename);
     string Encrypted, Descrypted;
     if (choice_shifr == "Polibi") {
         Encrypted = polybiumEncryption(message);
@@ -86,7 +91,8 @@ void Enc_and_Desc(string choice_shifr) {
         Encrypted = hughesEncDesc(message, key);
     }
     cout << "Зашифрованное сообщение: " << Encrypted << endl;
-    string filename = "Encrypt.txt";
+    cout << "Введите название файла, в который будет записано зашифрованное сообщение: ";
+    cin >> filename;
     string check = FileOutput(filename, Encrypted); // записываем в файл
     if (check != "Completed") {
         cout << "Ошибка, невозможно открыть файл " << filename << "!" << endl;
@@ -99,6 +105,8 @@ void Enc_and_Desc(string choice_shifr) {
         cin >> choice;
         if (choice == 'y' || choice == 'Y') {
             Encrypted.clear();
+            cout << "Введите название файла, в котором хранится зашифрованное сообщение: ";
+            cin >> filename;
             Encrypted = FileInput(filename);
             if (Encrypted != "Error: Unable to open the file") {
                 if (choice_shifr == "Polibi") {
@@ -109,7 +117,8 @@ void Enc_and_Desc(string choice_shifr) {
                     Descrypted = hughesEncDesc(Encrypted, key);
                 }
                 cout << "Расшифрованное сообщение: " << Descrypted << endl;
-                filename = "Descrypt.txt";
+                cout << "Введите название файла, в котором будет хранится зашифрованный файл: ";
+                cin >> filename;
                 check = FileOutput(filename, Descrypted); // записываем в файл
                 if (check != "Completed") {
                     cout << "Ошибка, невозможно открыть файл " << filename << "!" << endl;

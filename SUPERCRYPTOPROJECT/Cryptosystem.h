@@ -1,26 +1,22 @@
 #pragma once
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <iomanip>
+#include <fstream>
 #include <windows.h>
 #include <cmath>
 
 using namespace std;
 
-const string passwd = "9056"; // пароль
+const string passwd = "9056";
 
-// шифр Полибия
-string polybiumEncryption(string message);
-string polybiumDescryption(string message);
-vector<char> checkinputpolibi(string message);
+string polybiumEncryption(const string& message);
+string polybiumDescryption(const string& message);
+vector<char> checkinputpolibi(const string& messagee);
 
-// шифр Виженера
-string vijenerEncryption(string message, string key);
-string vijenerDescryption(string message, string key);
-vector<char> checkinputvijener(string message);
+string vijenerEncryption(const string& message, const string& key);
+string vijenerDescryption(const string& message, const string& key);
+vector<char> checkinputvijener(const string& message);
 
-// шифр Хьюза
 int VzaimProst(int a, int b);
 bool CheckPrime(int num);
 int fi(int num);

@@ -12,16 +12,9 @@ const char tableVijener[razmer] = {
                             '`', '~', '(', ')', '[', ']', '{', '}', '|', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
 };
 
-string vijenerEncryption(string message, string key) { // шифровка
+string vijenerEncryption(string& message, string& key) { // шифровка
     int iter = 0;
     int lenghtkey = key.length();
-    while (key.length() < message.length()) {
-        if (iter == lenghtkey) {
-            iter = 0;
-        }
-        key += key[iter];
-        iter++;
-    }
     vector<int> codemessage;
     for (int i = 0; i < message.size(); ++i) {
         for (int j = 0; j < razmer; ++j) {
@@ -50,16 +43,9 @@ string vijenerEncryption(string message, string key) { // шифровка
     return Encrypted;
 }
 
-string vijenerDescryption(string message, string key) { // расшифровка
+string vijenerDescryption(string& message, string& key) { // расшифровка
     int iter = 0;
     int lenghtkey = key.length();
-    while (key.length() < message.length()) {
-        if (iter == lenghtkey) {
-            iter = 0;
-        }
-        key += key[iter];
-        iter++;
-    }
     vector<int> codeEncrypt;
     for (int i = 0; i < message.size(); i++) {
         for (int j = 0; j < razmer; j++) {
@@ -91,7 +77,7 @@ string vijenerDescryption(string message, string key) { // расшифровка
     return Descrypted;
 }
 
-vector<char> checkinputvijener(string message) { // проверка ввода
+vector<char> checkinputvijener(string& message) { // проверка ввода
     vector<bool> check(message.size());
     for (int i = 0; i < message.size(); ++i) {
         for (int j = 0; j < razmer; ++j) {
